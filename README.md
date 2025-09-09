@@ -1,4 +1,3 @@
 # GardnerGamesV2
-Test README change.
-Welcome to the site.
-123123
+Stuff is coming soon...
+Get ready.
