@@ -1,17 +1,19 @@
-import { Routes, Route } from 'react-router-dom';
-import Home from './Home'
-import Lottery from './Lottery'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Lottery from "./pages/Lottery";
+import Navbar from "./components/Navbar";
+import "./App.css";
 
-function App() {
+const App = () => {
   return (
     <div>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/lottery" element={<Lottery />} />
       </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
