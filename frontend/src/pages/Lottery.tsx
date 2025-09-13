@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { Form, Input, Button } from "antd";
-import './App.css';
+import "../styles/Common.css";
+import "../styles/Lottery.css";
 
-function Lottery() {
+const Lottery = () => {
   const PLAYER_COUNT = 12;
   const [status, setStatus] = useState<string>("PRE");
   const [players, setPlayers] = useState<string[]>(Array(PLAYER_COUNT).fill(""));
@@ -109,12 +110,12 @@ function Lottery() {
 
   return (
     <>
-      <div>
-        {status === "PRE" && (<div>
+      <div className="main-page">
+        {status === "PRE" && (<div className="lottery-stage">
           <h1 className="page-header">Welcome to the Armchair Analysts 2025-26 season draft lottery</h1>
           <button onClick={startLottery}>Click here to begin</button>
         </div>)}
-        {status === "IP" && <div>
+        {status === "IP" && <div className="lottery-stage">
           <h1 className="page-header">This year's contenders:</h1>
           <div style={{ maxWidth: 350, margin: "auto" }}>
             <Form
@@ -144,21 +145,19 @@ function Lottery() {
             </Form>
           </div>
         </div>}
-        {status === "GO" && (<div>
-          <div style={{ display: "flex", width: "50vw" }}>
+        {status === "GO" && (<div className="lottery-stage">
+          <h1 className="page-header">Lottery results:</h1>
+          <div className="results-section">
             <div style={{ flex: 1 }}>
-              <h2 className="page-header">Expected Results:</h2>
-              <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+              <h2 className="page-header">Expected:</h2>
+              <table className="results-table">
                 <tbody>
                   {players.slice().reverse().map((playerName, idx) => (
                     <tr key={idx}>
                       <td
+                        className="results-cell"
                         style={{
-                          border: "2px solid black",
-                          textAlign: "center",
-                          padding: "8px",
                           color: "black",
-                          fontWeight: "bold",
                           backgroundColor: (
                             // is in the top 4
                             greens.includes(idx) &&
@@ -182,22 +181,20 @@ function Lottery() {
               </table>
             </div>
             <div style={{ flex: 1 }}>
-              <h2 className="page-header">Actual Results:</h2>
-              <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+              <h2 className="page-header">Actual:</h2>
+              <table className="results-table">
                 <tbody>
                   {results.slice().reverse().map((playerName, idx) => (
                     <tr key={idx}>
                       <td
+                        className="results-cell"
                         style={{
-                          border: "2px solid black",
-                          textAlign: "center",
-                          padding: "8px",
-                          color: revealIndex >= idx ? "black" : "transparent",
-                          fontWeight: "bold",
+                          color: revealIndex >= idx ? "black" : "white",
+                          backgroundColor: "white",
                           transition: "color 2s ease"
                         }}
                       >
-                        {playerName}
+                        <span>{revealIndex >= idx ? playerName : "SECRET"}</span>
                       </td>
                     </tr>
                   ))}
