@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input } from "antd";
 import "../styles/Common.css";
 import "../styles/Lottery.css";
 
@@ -97,6 +97,23 @@ const Lottery = () => {
     setStatus("IP");
   }
 
+  const randomizeTop4 = () => {
+    // shuffle players - each randomly can switch with any other
+    const newPlayers = [...players];
+    for (let i = 0; i < 4; i++) {
+      let j = i + Math.floor(Math.random() * (4 - i));
+      [newPlayers[i], newPlayers[j]] = [newPlayers[j], newPlayers[i]];
+    }
+    setPlayers(newPlayers);
+
+    // update form
+    const currentValues = form.getFieldsValue();
+    for (let i = 0; i < 4; i++) {
+      currentValues[i] = newPlayers[i];
+    }
+    form.setFieldsValue(currentValues);
+  }
+
   const onFinish = (values: Record<number, string>) => {
     const updatedPlayers = players.map((_, idx) => values[idx]); // store updated player names if we have any changes
     setPlayers(updatedPlayers);
@@ -117,37 +134,65 @@ const Lottery = () => {
         </div>)}
         {status === "IP" && <div className="lottery-stage">
           <h1 className="page-header">This year's contenders:</h1>
-          <div style={{ maxWidth: 350, margin: "auto" }}>
+          <div className="lottery-form">
             <Form
               form={form}
               onFinish={onFinish}
               layout="horizontal"
               labelCol={{ span: 12 }}
               wrapperCol={{ span: 12 }}
+              requiredMark={false}
             >
               {players.map((playerName, idx) => (
                 <Form.Item
                   key={idx}
                   label={`Player ${idx+1} (odds: ${odds[idx]}):`}
                   name={idx}
-                  rules={[{ required: true, message: `Please enter Player ${idx+1}` }]}
+                  rules={[{ required: true, message: '' }]}
                   initialValue={playerName}
-                  style={{ marginBottom: 8 }}
+                  style={{ marginBottom: "8px" }}
                 >
                   <Input />
                 </Form.Item>
               ))}
-              <Form.Item style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button type="primary" htmlType="submit">
-                  Submit
-                </Button>
-              </Form.Item>
+              <div className="buttons-row">
+                <div className="buttons-container">
+                  <button type="submit">
+                    Submit
+                  </button>
+                </div>
+                <div className="buttons-container">
+                  <button type="button" onClick={randomizeTop4}>
+                    Randomize top 4
+                  </button>
+                </div>
+              </div>
             </Form>
           </div>
         </div>}
         {status === "GO" && (<div className="lottery-stage">
           <h1 className="page-header">Lottery results:</h1>
           <div className="results-section">
+            <div className="numbers-column">
+              <h2 className="page-header">Pick:</h2>
+              <table className="results-table">
+                <tbody>
+                  {Array.from({ length: 12 }, (_, i) => 12 - i).map((num) => (
+                    <tr key={num}>
+                      <td
+                        className="results-cell"
+                        style={{
+                          color: "black",
+                          backgroundColor: "white"
+                        }}
+                      >
+                        {num}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
             <div style={{ flex: 1 }}>
               <h2 className="page-header">Expected:</h2>
               <table className="results-table">
