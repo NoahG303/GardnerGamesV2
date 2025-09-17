@@ -8,7 +8,6 @@ sounds/confetti?
 unreverse?  
   
 build opt  
-document gitstuff  
 typing  
 UI - incl. index.css - light/dark mode?, icon  
 

@@ -21,7 +21,7 @@ const Lottery = () => {
       "Cousin Quinn",
       "Aidang",
       "Mr. Cox",
-      "Rudy Gobert",
+      "Sexy Rudy Gobert",
       "'Arry Pohuh",
       "Commissioner Gordoner",
       "Eggnog",
