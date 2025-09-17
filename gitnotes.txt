@@ -1,0 +1,16 @@
+Start new feature:
+1: git pull dev
+2: git checkout -b <newbranch>
+
+After feature is finished, get to deployment:
+1: git push (from feature, or + "-u origin <newbranch>" if not connected yet)
+2: PR feature --> dev
+3: PR dev --> main (autodeployment)
+
+After deployment, main is 1 commit ahead of dev bc of PR dev --> main:
+1: git checkout main, git pull main
+2: git checkout dev, git pull dev, git merge main
+3: git checkout feature, git pull feature, git merge dev (for all features)
+4: git push feature (for all features)
+5: PR 1 feature --> dev
+6: git checkout dev, git pull dev (now even, but dev 1 ahead with catchup PR 1 feature --> dev)
