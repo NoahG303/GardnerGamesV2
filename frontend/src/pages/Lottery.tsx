@@ -129,11 +129,11 @@ const Lottery = () => {
     <>
       <div className="main-page">
         {status === "PRE" && (<div className="lottery-stage">
-          <h1 className="page-header">Welcome to the Armchair Analysts 2025-26 season draft lottery</h1>
+          <h1 className="page-header">Welcome to the Armchair Analysts 2026-27 season draft lottery</h1>
           <button onClick={startLottery}>Click here to begin</button>
         </div>)}
         {status === "IP" && <div className="lottery-stage">
-          <h1 className="page-header">This year's contenders:</h1>
+          <h1 className="page-header">This year's contenders (RIP Squilliam):</h1>
           <div className="lottery-form">
             <Form
               form={form}
