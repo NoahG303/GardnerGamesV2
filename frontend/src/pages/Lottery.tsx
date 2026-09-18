@@ -18,18 +18,18 @@ const Lottery = () => {
 
   useEffect(() => {
     setPlayers([
-      "Cousin Quinn",
-      "Aidang",
-      "Mr. Cox",
-      "Sexy Rudy Gobert",
-      "'Arry Pohuh",
-      "Commissioner Gordoner",
-      "Eggnog",
-      "Micbruh",
-      "Gaidan",
-      "Klye",
-      "Ballsaac",
-      "Mr. Shka"
+      "Quim",
+      "Music Man",
+      "Cosmo F. Ass",
+      "Michael B. Ruh",
+      "Art Major",
+      "Son of Car",
+      "Dicks Licksic",
+      "Heath Bar",
+      "Koi Boi",
+      "Mr. Environment",
+      "Chiraqi",
+      "Our Beloved Commissioner"
     ]); // not automatable - hard coded for us
 
     const lotteryOdds: string[] = [];
